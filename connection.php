@@ -1,10 +1,10 @@
 <?php
 
   
-  $host='127.0.0.1:3306'; 
-  $database='t'; 
+  $host='mysql'; 
+  $database='k3140_bak'; 
   $user='root'; 
-  $pswd='65346344'; 
+  $pswd='123456'; 
  
   
 ?>
