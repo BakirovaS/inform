@@ -2,12 +2,12 @@
 <body>
 	<form action = 'search.php' method = 'get'>
 	<table>
-	<tr><th>Введите значения:</th></tr>
-	<tr><td>Фамилия: <input name = 'surname' type = 'text' value='<?=@$_GET['surname']?>' ></td></tr>
-	<tr><td>Номер расписания: <input name = 'schedule' type = 'text' value='<?=@$_GET['schedule']?>' ></td></tr>
+	<tr><strong>Enter:</strong></tr>
+	<tr><td>Surname: <input name = 'surname' type = 'text' value='<?=@$_GET['surname']?>' ></td></tr>
+	<tr><td>Schedule number: <input name = 'schedule' type = 'text' value='<?=@$_GET['schedule']?>' ></td></tr>
 	</table>
 	<br/>
-	<input type = 'submit' name = 'button' value = 'Поиск'>
+	<input type = 'submit' name = 'button' value = 'Search'>
 	</form>
 </body>
 </html>
@@ -18,16 +18,16 @@
 
   $dbh = mysql_connect($host, $user, $pswd) ;
   if(!$dbh){
-    echo ("Не могу соединиться с MySQL." . mysql_error());
+    echo ("no connect MySQL." . mysql_error());
     exit();
   }
-//  echo("Соединение с базой данных установлено<br>");
+
   
   mysql_select_db($database);
   
   if(isset($_GET['surname']) or isset($_GET['schedule'])) {
-    $surname = strtr(trim($_GET['surname']), '*', '%');
-    $schedule = strtr(trim($_GET['schedule']), '*', '%');
+    $surname = trim($_GET['surname']);
+    $schedule = trim($_GET['schedule']);
       
     $query = "SELECT worker.surname, schedule.id_schedule FROM work_plan
       JOIN worker ON work_plan.id_worker = worker.id_worker
@@ -53,9 +53,9 @@
   }
   
   if(!mysql_close($dbh)) {
-    echo("Не удалось завершить соединение<br>"  . mysql_error());
+    echo("failed<br>"  . mysql_error());
   }		
 
-//  echo('Вот и все)');  
+
  
 ?>
